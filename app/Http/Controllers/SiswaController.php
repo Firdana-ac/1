@@ -74,7 +74,7 @@ class SiswaController extends Controller
             } else {
                 $foto = 'uploads/siswa/50271431012020_female.jpg';
             }
-            Guru::create([
+            Dosen::create([
                 'no_induk' => $request->no_induk,
                 'nis' => $request->nis,
                 'nama_siswa' => $request->nama_siswa,

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Nilai;
-use App\Guru;
+use App\Dosen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -17,9 +17,9 @@ class NilaiController extends Controller
      */
     public function index()
     {
-        $guru = Guru::where('id_card', Auth::user()->id_card)->first();
-        $nilai = Nilai::where('guru_id', $guru->id)->first();
-        return view('guru.nilai', compact('nilai', 'guru'));
+        $dosen = Dosen::where('id_card', Auth::user()->id_card)->first();
+        $nilai = Nilai::where('dosen_id', $dosen->id)->first();
+        return view('dosen.nilai', compact('nilai', 'dosen'));
     }
 
     /**
@@ -29,8 +29,8 @@ class NilaiController extends Controller
      */
     public function create()
     {
-        $guru = Guru::orderBy('kode')->get();
-        return view('admin.nilai.index', compact('guru'));
+        $dosen = Dosen::orderBy('kode')->get();
+        return view('admin.nilai.index', compact('dosen'));
     }
 
     /**
@@ -41,14 +41,14 @@ class NilaiController extends Controller
      */
     public function store(Request $request)
     {
-        $guru = Guru::where('kode', $request->guru_id)->first();
+        $dosen = Dosen::where('kode', $request->dosen_id)->first();
 
         Nilai::updateOrCreate(
             [
                 'id' => $request->id
             ],
             [
-                'guru_id' => $guru->id,
+                'dosen_id' => $dosen->id,
                 'kkm' => $request->kkm,
                 'deskripsi_a' => $request->predikat_a,
                 'deskripsi_b' => $request->predikat_b,
