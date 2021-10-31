@@ -49,14 +49,14 @@ class KelasController extends Controller
         if ($request->id != '') {
             $this->validate($request, [
                 'nama_kelas' => 'required|min:6|max:10',
-                'ruang_id' => 'required',
-                'dosen_id' => 'required|unique:kelas',
+                'paket_id' => 'required',
+                //'dosen_id' => 'required|unique:kelas',
             ]);
         } else {
             $this->validate($request, [
                 'nama_kelas' => 'required|unique:kelas|min:6|max:10',
-                'ruang_id' => 'required',
-                'dosen_id' => 'required|unique:kelas',
+                'paket_id' => 'required',
+                //'dosen_id' => 'required|unique:kelas',
             ]);
         }
 

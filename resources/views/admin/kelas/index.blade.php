@@ -80,7 +80,7 @@
                 <select id="paket_id" name="paket_id" class="select2bs4 form-control @error('paket_id') is-invalid @enderror">
                 <option value="">-- Pilih Ruangan --</option>
                  @foreach ($ruang as $data)
-                  <option value="{{ $data->nama_ruang }}">{{ $data->nama_ruang }}</option>
+                  <option value="{{ $data->id }}">{{ $data->nama_ruang }}</option>
                  @endforeach
                </select>
               </div>
