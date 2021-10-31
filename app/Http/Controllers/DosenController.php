@@ -16,6 +16,7 @@ use App\Exports\DosenExport;
 use App\Imports\DosenImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
+use App\Paket;
 
 class DosenController extends Controller
 {
@@ -26,9 +27,11 @@ class DosenController extends Controller
      */
     public function index()
     {
-        $team = Team::orderBy('nama_team')->get();
+        $team = Team::orderBy('id')->get();
+        $team2 = Team::all();
+        $paket = Paket::all();
         $max = Dosen::max('id_card');
-        return view('admin.dosen.index', compact('team', 'max'));
+        return view('admin.dosen.index', compact('team', 'max','paket','team2'));
     }
 
     /**
@@ -53,8 +56,8 @@ class DosenController extends Controller
             'id_card' => 'required',
             'nama_dosen' => 'required',
             'team_id' => 'required',
-            'kode' => 'required|string|unique:dosen|min:2|max:3',
-            'jk' => 'required'
+            //'kode' => 'required|string|unique:dosen|min:2|max:3',
+            //'jk' => 'required'
         ]);
 
         if ($request->foto) {
@@ -64,6 +67,8 @@ class DosenController extends Controller
                 'id_card' => $request->id_card,
                 'nip' => $request->nip,
                 'nama_dosen' => $request->nama_dosen,
+                'intensi'=>$request->intansi,
+                'pangkat_golongan'=>$request->pangkat_golongan,
                 'team_id' => $request->team_id,
                 'kode' => $request->kode,
                 'jk' => $request->jk,
@@ -83,6 +88,8 @@ class DosenController extends Controller
                 'id_card' => $request->id_card,
                 'nip' => $request->nip,
                 'nama_dosen' => $request->nama_dosen,
+                'instansi'=> $request->instansi,
+                'pangkat_golongan'=> $request->pangkat_golongan,
                 'team_id' => $request->team_id,
                 'kode' => $request->kode,
                 'jk' => $request->jk,

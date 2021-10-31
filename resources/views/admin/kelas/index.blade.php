@@ -19,8 +19,8 @@
             <thead>
                 <tr>
                     <th>No.</th>
-                    <th>Kelas</th>
-                    <th>Wali Kelas</th>
+                    <th>Nama Kelas</th>
+                    <th>Ruang</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -29,18 +29,19 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $data->nama_kelas }}</td>
+                    <td>{{$data->paket_id}}</td>
                     <td>{{ $data->dosen->nama_dosen }}</td>
                     <td>
                         <form action="{{ route('kelas.destroy', $data->id) }}" method="post">
                             @csrf
                             @method('delete')
-                            <button type="button" class="btn btn-info btn-sm" onclick="getSubsMhs({{$data->id}})" data-toggle="modal" data-target=".view-mhs">
+                            {{--<button type="button" class="btn btn-info btn-sm" onclick="getSubsMhs({{$data->id}})" data-toggle="modal" data-target=".view-mhs">
                               <i class="nav-icon fas fa-users"></i> &nbsp; View mhs
                             </button>
                             <button type="button" class="btn btn-info btn-sm" onclick="getSubsJadwal({{$data->id}})" data-toggle="modal" data-target=".view-jadwal">
                               <i class="nav-icon fas fa-calendar-alt"></i> &nbsp; View Jadwal
-                            </button>
-                            <button type="button" class="btn btn-success btn-sm" onclick="getEditKelas({{$data->id}})" data-toggle="modal" data-target="#form-kelas">
+                            </button>--}}
+                            <button type="button" class="btn btn-success btn-sm" onclick="getEditKelas({{$data->id}})" data-toggle="modal" data-target="edit-kelas">
                               <i class="nav-icon fas fa-edit"></i> &nbsp; Edit
                             </button>
                             <button class="btn btn-danger btn-sm"><i class="nav-icon fas fa-trash-alt"></i> &nbsp; Hapus</button>
@@ -72,13 +73,21 @@
           @csrf
           <div class="row">
             <div class="col-md-12">
-              <input type="hidden" id="id" name="id">
+              {{--<input type="hidden" id="id" name="id">--}}
               <div class="form-group" id="form_nama"></div>
-              <div class="form-group" id="form_paket"></div>
+              <div class="form-group" id="form_paket">
+                <label for="penguji_id">Ruang</label>
+                <select id="paket_id" name="paket_id" class="select2bs4 form-control @error('paket_id') is-invalid @enderror">
+                <option value="">-- Pilih Ruangan --</option>
+                 @foreach ($ruang as $data)
+                  <option value="{{ $data->nama_ruang }}">{{ $data->nama_ruang }}</option>
+                 @endforeach
+               </select>
+              </div>
               <div class="form-group">
-                <label for="dosen_id">Wali Kelas</label>
+                <label for="dosen_id">Pemimpin Sidang</label>
                 <select id="dosen_id" name="dosen_id" class="select2bs4 form-control @error('dosen_id') is-invalid @enderror">
-                  <option value="">-- Pilih Wali Kelas --</option>
+                  <option value="">-- Pilih Pemimpin Sidang --</option>
                   @foreach ($dosen as $data)
                     <option value="{{ $data->id }}">{{ $data->nama_dosen }}</option>
                   @endforeach
@@ -90,6 +99,45 @@
         <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal"><i class='nav-icon fas fa-arrow-left'></i> &nbsp; Kembali</button>
             <button type="submit" class="btn btn-primary"><i class="nav-icon fas fa-save"></i> &nbsp; Tambahkan</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade bd-example-modal-md" id="edit-kelas" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h4 class="modal-title" id="judul_edit">Edit Kelas</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ route('kelas.store') }}" method="post">
+          @csrf
+          <div class="row">
+            <div class="col-md-12">
+              <input type="hidden" id="id_edit" name="id">
+              <div class="form-group" id="edit_nama">
+                <label for="nama_kelas">Nama Kelas</label>
+                <input type='text' id="edit_nama_kelas" onkeyup="this.value = this.value.toUpperCase()" name='nama_kelas' class="form-control @error('nama_kelas') is-invalid @enderror" placeholder="{{ __('Nama Kelas') }}">
+              </div>
+              <div class="form-group" id="edit_paket">
+                <label for="penguji_id">Ruang</label>
+                <select id="edit_paket_id" name="paket_id" class="select2bs4 form-control @error('paket_id') is-invalid @enderror">
+                <option value="">-- Pilih Ruangan --</option>
+                 @foreach ($ruang as $data)
+                  <option value="{{ $data->nama_ruang }}">{{ $data->nama_ruang }}</option>
+                 @endforeach
+               </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal"><i class='nav-icon fas fa-arrow-left'></i> &nbsp; Kembali</button>
+            <button type="submit" class="btn btn-primary"><i class="nav-icon fas fa-save"></i> &nbsp; Update</button>
       </form>
       </div>
     </div>
@@ -199,7 +247,7 @@
         <input type='text' id="nama_kelas" onkeyup="this.value = this.value.toUpperCase()" name='nama_kelas' class="form-control @error('nama_kelas') is-invalid @enderror" placeholder="{{ __('Nama Kelas') }}">
       `);
       $('#nama_kelas').val('');
-      $('#form_paket').html('');
+      /*$('#form_paket').html('');
       $('#form_paket').html(`
         <label for="paket_id">Paket Keahlian</label>
         <select id="paket_id" name="paket_id" class="select2bs4 form-control @error('paket_id') is-invalid @enderror">
@@ -208,33 +256,36 @@
             <option value="{{ $data->id }}">{{ $data->ket }}</option>
           @endforeach
         </select>
-      `);
+      `);*/
       $('#dosen_id').val('');
     }
 
     function getEditKelas(id){
       var parent = id;
-      var form_paket = (`
+      /*var form_paket = (`
         <input type="hidden" id="paket_id" name="paket_id">
         <input type="hidden" id="nama_kelas" name="nama_kelas">
-      `);
+      `);*/
       $.ajax({
         type:"GET",
         data:"id="+parent,
         dataType:"JSON",
         url:"{{ url('/kelas/edit/json') }}",
         success:function(result){
-            // console.log(result);
+             console.log(val.paket_id);
           if(result){
             $.each(result,function(index, val){
-              $("#judul").text('Edit Data Kelas ' + val.nama);
+              $('#id_edit').val(val.id);
+              $('#edit_nama_kelas').val(val.nama);
+              $('#edit_paket_id').val(val.paket_id);
+              /*$("#judul").text('Edit Data Kelas ' + val.nama);
               $('#id').val(val.id);
               $('#form_nama').html('');
               $('#form_paket').html('');
               $("#form_paket").append(form_paket);
               $('#nama_kelas').val(val.nama);
               $("#paket_id").val(val.paket_id);
-              $('#dosen_id').val(val.dosen_id);
+              $('#dosen_id').val(val.dosen_id);*/
             });
           }
         },

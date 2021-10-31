@@ -1,5 +1,5 @@
 @extends('template_backend.home')
-@section('heading', 'Edit Team')
+@section('heading', 'Data Team Penguji')
 @section('page')
   <li class="breadcrumb-item active"><a href="{{ route('team.index') }}">team</a></li>
   <li class="breadcrumb-item active">Edit team</li>

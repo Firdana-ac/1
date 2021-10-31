@@ -25,7 +25,8 @@ class MhsController extends Controller
     public function index()
     {
         $kelas = Kelas::OrderBy('nama_kelas', 'asc')->get();
-        return view('admin.mhs.index', compact('kelas'));
+        $mhs=Mhs::all();
+        return view('admin.mhs.index', compact('kelas', 'mhs'));
     }
 
     /**
@@ -268,7 +269,7 @@ class MhsController extends Controller
     public function kelas($id)
     {
         $id = Crypt::decrypt($id);
-        $mhs = Mhs::where('kelas_id', $id)->OrderBy('nama_mhs', 'asc')->get();
+        $mhs = Mhs::where('id', $id)->get();
         $kelas = Kelas::findorfail($id);
         return view('admin.mhs.show', compact('mhs', 'kelas'));
     }

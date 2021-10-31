@@ -9,7 +9,7 @@ class Dosen extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['id_card', 'nip', 'nama_dosen', 'team_id', 'kode', 'jk', 'telp', 'tmp_lahir', 'tgl_lahir', 'foto'];
+    protected $fillable = ['id_card', 'nip', 'nama_dosen', 'instansi','pangkat_golongan','team_id', 'kode', 'jk',  'foto'];
 
     public function team()
     {

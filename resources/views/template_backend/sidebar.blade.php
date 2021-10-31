@@ -132,12 +132,12 @@
                         </li>
                     @else
                     @endif
-                    <li class="nav-item">
+                    <!--<li class="nav-item">
                         <a href="{{ route('dosen.absensi') }}" class="nav-link" id="AbsensiDosen">
                             <i class="fas fa-calendar-check nav-icon"></i>
                             <p>Absensi Dosen</p>
                         </a>
-                    </li>
+                    </li>-->
                     <li class="nav-item has-treeview" id="liNilai">
                         <a href="#" class="nav-link" id="Nilai">
                             <i class="nav-icon fas fa-file-signature"></i>
@@ -186,12 +186,12 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <!--<li class="nav-item">
                         <a href="{{ route('absen.harian') }}" class="nav-link" id="AbsenDosen">
                             <i class="fas fa-calendar-check nav-icon"></i>
                             <p>Absen</p>
                         </a>
-                    </li>
+                    </li>-->
                     <li class="nav-item">
                         <a href="{{ route('jadwal.dosen') }}" class="nav-link" id="JadwalDosen">
                             <i class="fas fa-calendar-alt nav-icon"></i>
@@ -238,6 +238,14 @@
                                 </a>
                             </li>
                         </ul>
+                        <li class="nav-item has-treeview" id="liNilaiDosen">
+                            <a href="#" class="nav-link" id="NilaiDosen">
+                                <i class="nav-icon fas fa-file-signature"></i>
+                                <p>
+                                    Tanda Tangan
+                                </p>
+                            </a>
+                        </li>
                     </li>
                 @elseif (Auth::user()->role == 'Mhs' && Auth::user()->mhs(Auth::user()->no_induk))
                     <li class="nav-item has-treeview">

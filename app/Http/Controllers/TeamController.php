@@ -45,7 +45,7 @@ class TeamController extends Controller
         $this->validate($request, [
             'nama_team' => 'required',
             'paket_id' => 'required',
-            'kelompok' => 'required'
+            //'kelompok' => 'required'
         ]);
 
         Team::updateOrCreate(
@@ -55,11 +55,11 @@ class TeamController extends Controller
             [
                 'nama_team' => $request->nama_team,
                 'paket_id' => $request->paket_id,
-                'kelompok' => $request->kelompok,
+                //'kelompok' => $request->kelompok,
             ]
         );
 
-        return redirect()->back()->with('success', 'Data team berhasil diperbarui!');
+        return redirect()->back()->with('success', 'Data Team Penguji berhasil diperbarui!');
     }
 
     /**

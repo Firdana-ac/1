@@ -7,6 +7,7 @@ use App\Dosen;
 use App\Paket;
 use App\Jadwal;
 use App\Mhs;
+use App\Ruang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 
@@ -22,7 +23,8 @@ class KelasController extends Controller
         $kelas = Kelas::OrderBy('nama_kelas', 'asc')->get();
         $dosen = Dosen::OrderBy('nama_dosen', 'asc')->get();
         $paket = Paket::all();
-        return view('admin.kelas.index', compact('kelas', 'dosen', 'paket'));
+        $ruang= Ruang::all();
+        return view('admin.kelas.index', compact('kelas', 'dosen', 'paket','ruang'));
     }
 
     /**
@@ -47,13 +49,13 @@ class KelasController extends Controller
         if ($request->id != '') {
             $this->validate($request, [
                 'nama_kelas' => 'required|min:6|max:10',
-                'paket_id' => 'required',
+                'ruang_id' => 'required',
                 'dosen_id' => 'required|unique:kelas',
             ]);
         } else {
             $this->validate($request, [
                 'nama_kelas' => 'required|unique:kelas|min:6|max:10',
-                'paket_id' => 'required',
+                'ruang_id' => 'required',
                 'dosen_id' => 'required|unique:kelas',
             ]);
         }

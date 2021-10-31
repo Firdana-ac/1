@@ -21,9 +21,7 @@ class CreateDosenTable extends Migration
             $table->integer('team_id');
             $table->string('kode', 5)->nullable();
             $table->enum('jk', ['L', 'P']);
-            $table->string('telp', 15)->nullable();
-            $table->string('tmp_lahir', 50)->nullable();
-            $table->date('tgl_lahir')->nullable();
+            $table->string('pangkat_golongan', 50)->nullable();
             $table->string('foto');
             $table->timestamps();
             $table->softDeletes();

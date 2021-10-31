@@ -10,7 +10,7 @@ class Mhs extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['no_induk', 'nis', 'nama_mhs', 'kelas_id', 'jk', 'telp', 'tmp_lahir', 'tgl_lahir', 'foto'];
+    protected $fillable = ['no_induk', 'nis', 'nama_mhs', 'kelas_id', 'jk', 'foto'];
 
     public function kelas()
     {

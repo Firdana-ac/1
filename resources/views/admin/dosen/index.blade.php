@@ -78,7 +78,7 @@
             <thead>
                 <tr>
                     <th>No.</th>
-                    <th>Nama team</th>
+                    <th>Sebagai</th>
                     <th>Lihat Dosen</th>
                 </tr>
             </thead>
@@ -87,8 +87,13 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->nama_team }}</td>
+                        <!-- @if ( $data->paket_id == 5 )
+                            <td>{{ 'Semua' }}</td>
+                        @else
+                            <td>{{ $data->nama_team }}</td>
+                        @endif -->
                         <td>
-                            <a href="{{ route('dosen.team', Crypt::encrypt($data->id)) }}" class="btn btn-info btn-sm"><i class="nav-icon fas fa-search-plus"></i> &nbsp; Ditails</a>
+                            <a href="{{ route('dosen.team', Crypt::encrypt($data->id)) }}" class="btn btn-info btn-sm"><i class="nav-icon fas fa-search-plus"></i> &nbsp; Details</a>
                         </td>
                     </tr>
                 @endforeach
@@ -117,14 +122,51 @@
                         <label for="nama_dosen">Nama Dosen</label>
                         <input type="text" id="nama_dosen" name="nama_dosen" class="form-control @error('nama_dosen') is-invalid @enderror">
                     </div>
+                    
                     <div class="form-group">
+                        <label for="tmp_lahir">Instansi</label>
+                        <input type="text" id="instansi" name="instansi" class="form-control @error('instansi') is-invalid @enderror">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="team_id">Pangakt Golongan</label>
+                        <select id="pangkat_golongan" name="pangkat_golongan" class="select2bs4 form-control @error('pangkat_golongan') is-invalid @enderror">
+                            <option value="">-- Pilih Pangakt Detail --</option>
+                            <option value="1A">1A</option>
+                            <option value="1B">1B</option>
+                            <option value="1C">1C</option>
+                            <option value="1D">1D</option>
+                            <option value="2A">2A</option>
+                            <option value="2B">2B</option>
+                            <option value="2C">2C</option>
+                            <option value="2D">2D</option>
+                            <option value="3A">3A</option>
+                            <option value="3B">3B</option>
+                            <option value="3C">3C</option>
+                            <option value="3D">3D</option>
+                            <option value="4A">4A</option>
+                            <option value="4B">4B</option>
+                            <option value="4C">4C</option>
+                            <option value="4D">4D</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="team_id">Tim Penguji</label>
+                        <select id="team_id" name="team_id" class="select2bs4 form-control @error('team_id') is-invalid @enderror">
+                            <option value="">-- Pilih Pake Sebagai --</option>
+                            @foreach ($team2 as $data)
+                                <option value="{{ $data->id }}">{{ $data->nama_team }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                     {{-- <div class="form-group">
                         <label for="tmp_lahir">Tempat Lahir</label>
                         <input type="text" id="tmp_lahir" name="tmp_lahir" class="form-control @error('tmp_lahir') is-invalid @enderror">
                     </div>
                     <div class="form-group">
                         <label for="tgl_lahir">Tanggal Lahir</label>
                         <input type="date" id="tgl_lahir" name="tgl_lahir" class="form-control @error('tgl_lahir') is-invalid @enderror">
-                    </div>
+                    </div>--}}
                     <div class="form-group">
                         <label for="jk">Jenis Kelamin</label>
                         <select id="jk" name="jk" class="select2bs4 form-control @error('jk') is-invalid @enderror">
@@ -133,17 +175,17 @@
                             <option value="P">Perempuan</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label for="telp">Nomor Telpon/HP</label>
                         <input type="text" id="telp" name="telp" onkeypress="return inputAngka(event)" class="form-control @error('telp') is-invalid @enderror">
-                    </div>
+                    </div>-->
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="nip">NIP</label>
                         <input type="text" id="nip" name="nip" onkeypress="return inputAngka(event)" class="form-control @error('nip') is-invalid @enderror">
                     </div>
-                    <div class="form-group">
+                    {{--<div class="form-group">
                         <label for="team_id">team</label>
                         <select id="team_id" name="team_id" class="select2bs4 form-control @error('team_id') is-invalid @enderror">
                             <option value="">-- Pilih team --</option>
@@ -151,7 +193,7 @@
                                 <option value="{{ $data->id }}">{{ $data->nama_team }}</option>
                             @endforeach
                         </select>
-                    </div>
+                    </div>--}}
                     @php
                         $kode = $max+1;
                         if (strlen($kode) == 1) {

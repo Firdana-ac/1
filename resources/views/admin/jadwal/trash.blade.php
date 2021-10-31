@@ -16,7 +16,7 @@
                 <tr>
                     <th>No.</th>
                     <th>Hari</th>
-                    <th>Jadwal</th>
+                    <th>Nama Mahasiswa</th>
                     <th>Kelas</th>
                     <th>Jam Pelajaran</th>
                     <th>Ruang Kelas</th>
@@ -29,8 +29,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $data->hari->nama_hari }}</td>
                     <td>
-                        <h5 class="card-title">{{ $data->team->nama_team }}</h5>
-                        <p class="card-text"><small class="text-muted">{{ $data->dosen->nama_dosen }}</small></p>
+                        <p class="card-text"><small class="text-muted">{{ $data->mhs->nama_mhs }}</small></p>
                     </td>
                     <td>{{ $data->kelas->nama_kelas }}</td>
                     <td>{{ $data->jam_mulai }} - {{ $data->jam_selesai }}</td>

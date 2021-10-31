@@ -30,8 +30,18 @@ class JadwalController extends Controller
         $hari = Hari::all();
         $kelas = Kelas::OrderBy('nama_kelas', 'asc')->get();
         $ruang = Ruang::all();
+        $mhs = Mhs::all();
+        $jadwal=Jadwal::all();
         $dosen = Dosen::OrderBy('kode', 'asc')->get();
-        return view('admin.jadwal.index', compact('hari', 'kelas', 'dosen', 'ruang'));
+        $promotor = Dosen::where('team_id', 4)->get();
+        $koprom1 = Dosen::where('team_id', 5)->get();
+        $koprom2 = Dosen::where('team_id', 6)->get();
+        $penguji1 = Dosen::where('team_id', 7)->get();
+        $penguji2 = Dosen::where('team_id', 8)->get();
+        $penguji3 = Dosen::where('team_id', 9)->get();
+        $penguji4 = Dosen::where('team_id', 10)->get();
+        $penguji5 = Dosen::where('team_id', 14)->get();
+        return view('admin.jadwal.index', compact('hari', 'kelas', 'dosen', 'ruang','mhs','jadwal','promotor','koprom1','koprom2','penguji1','penguji2','penguji3','penguji4','penguji5'));
     }
 
     /**
@@ -61,7 +71,7 @@ class JadwalController extends Controller
             'ruang_id' => 'required',
         ]);
 
-        $dosen = Dosen::findorfail($request->dosen_id);
+        //$dosen = Dosen::findorfail($request->dosen_id);
         Jadwal::updateOrCreate(
             [
                 'id' => $request->jadwal_id
@@ -69,11 +79,20 @@ class JadwalController extends Controller
             [
                 'hari_id' => $request->hari_id,
                 'kelas_id' => $request->kelas_id,
+                'promotor'=>$request->promotor,
+                'kopromotor1'=>$request->kopromotor1,
+                'kopromotor2'=>$request->kopromotor2,
+                'penguji_1'=>$request->penguji1,
+                'penguji_2'=>$request->penguji2,
+                'penguji_3'=>$request->penguji3,
+                'penguji_4'=>$request->penguji4,
+                'penguji_5'=>$request->penguji5,
                 'team_id' => $dosen->team_id,
                 'dosen_id' => $request->dosen_id,
                 'jam_mulai' => $request->jam_mulai,
                 'jam_selesai' => $request->jam_selesai,
                 'ruang_id' => $request->ruang_id,
+                'tanggal' => $request->tanggal,
             ]
         );
 
@@ -89,8 +108,10 @@ class JadwalController extends Controller
     public function show($id)
     {
         $id = Crypt::decrypt($id);
-        $kelas = Kelas::findorfail($id);
-        $jadwal = Jadwal::OrderBy('hari_id', 'asc')->OrderBy('jam_mulai', 'asc')->where('kelas_id', $id)->get();
+        $data = Jadwal::orderBy('hari_id', 'asc')->OrderBy('jam_mulai', 'asc')->where('id', $id)->first();
+        //$kelas = Kelas::findorfail($id);
+        $jadwal = Jadwal::with('mhs')->find('$id');
+        return $jadwal;
         return view('admin.jadwal.show', compact('jadwal', 'kelas'));
     }
 
@@ -120,7 +141,27 @@ class JadwalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // 
+        $id = Crypt::decrypt($id);
+        $jadwal = Jadwal::findOrFail($id);
+        $jadwal->update([
+                'hari_id' => $request->hari_id,
+                'kelas_id' => $request->kelas_id,
+                'judul' => $request->judul,
+                'penguji_id' => $request->penguji_id,
+                'promotor' => $request->promotor,
+                'kopromotor_1' => $request->kopromotor1,
+                'kopromotor_2' => $request->kopromotor2,
+                'penguji_1' => $request->penguji1,
+                'penguji_2' => $request->penguji2,
+                'penguji_3' => $request->penguji3,
+                'penguji_4' => $request->penguji4,
+                'penguji_5' => $request->penguji5,
+                'jam_mulai' => $request->jam_mulai,
+                'jam_selesai' => $request->jam_selesai,
+                'ruang_id' => $request->ruang_id,
+                'tanggal' => $request->tanggal,
+            ]);
+        return redirect()->route('jadwal.show', Crypt::encrypt($jadwal->id))->with('success', 'Data jadwal berhasil diperbarui!');
     }
 
     /**

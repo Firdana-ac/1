@@ -11,6 +11,9 @@
 |
 */
 
+use App\Http\Controllers\JadwalController;
+use App\Jadwal;
+
 Route::get('/welcome', function () {
   return view('welcome');
 });

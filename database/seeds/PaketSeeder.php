@@ -14,35 +14,35 @@ class PaketSeeder extends Seeder
     {
         DB::table('paket')->insert([
             'id' => 1,
-            'ket' => 'Bisnis kontruksi dan Properti',
+            'ket' => 'Promotor',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
         DB::table('paket')->insert([
             'id' => 2,
-            'ket' => 'Desain Permodelan dan Informasi Bangunan',
+            'ket' => 'Ko Promotor 1',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
         DB::table('paket')->insert([
             'id' => 3,
-            'ket' => 'Elektronika Industri',
+            'ket' => 'Ko Promotor 2',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
         DB::table('paket')->insert([
             'id' => 4,
-            'ket' => 'Otomasi Industri',
+            'ket' => 'Penguji 1',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
         DB::table('paket')->insert([
             'id' => 5,
-            'ket' => "Teknik Pemesinan",
+            'ket' => "Penguji 2",
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
-        DB::table('paket')->insert([
+        /*DB::table('paket')->insert([
             'id' => 6,
             'ket' => 'Teknik dan Bisnis Sepeda Motor',
             'created_at' => date('Y-m-d H:i:s'),
@@ -59,6 +59,6 @@ class PaketSeeder extends Seeder
             'ket' => "Teknik Pengelasan",
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
-        ]);
+        ]);*/
     }
 }

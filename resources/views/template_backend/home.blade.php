@@ -107,6 +107,9 @@
 
     @include('template_backend.sidebar')
 
+    @include('template_backend.footer')
+
+
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -138,4 +141,7 @@
     </div>
     <!-- /.content-wrapper -->
 
-    @include('template_backend.footer')
+    <br>
+    <br>
+    <br>
+

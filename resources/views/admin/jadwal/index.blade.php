@@ -81,17 +81,17 @@
             <thead>
                 <tr>
                     <th>No.</th>
-                    <th>Nama Kelas</th>
+                    <th>Nama Mahasiswa</th>
                     <th>Lihat Jadwal</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($kelas as $data)
+                @foreach ($jadwal as $data)
                   <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $data->nama_kelas }}</td>
+                    <td>{{ $data->mhs->nama_kelas }}</td>
                     <td>
-                      <a href="{{ route('jadwal.show', Crypt::encrypt($data->id)) }}" class="btn btn-info btn-sm"><i class="nav-icon fas fa-search-plus"></i> &nbsp; Ditails</a>
+                      <a href="{{ route('jadwal.show', Crypt::encrypt($data->id)) }}" class="btn btn-info btn-sm"><i class="nav-icon fas fa-search-plus"></i> &nbsp; Details</a>
                     </td>
                   </tr>
                 @endforeach
@@ -120,6 +120,19 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
+                  <label for="jam_mulai">Judul</label>
+                  <input type='text' id="judul" name='judul' class="form-control @error('judul') is-invalid @enderror judul" placeholder="judul">
+                </div>
+                <div class="form-group">
+                  <label for="mhs_id">Mahasiswa</label>
+                  <select id="mhs_id" name="mhs_id" class="form-control @error('mhs_id') is-invalid @enderror select2bs4">
+                      <option value="">-- Pilih Mahasiswa --</option>
+                      @foreach ($mhs as $data)
+                          <option value="{{ $data->id }}">{{ $data->nama_mhs }}</option>
+                      @endforeach
+                  </select>
+                </div>
+                <div class="form-group">
                   <label for="hari_id">Hari</label>
                   <select id="hari_id" name="hari_id" class="form-control @error('hari_id') is-invalid @enderror select2bs4">
                       <option value="">-- Pilih Hari --</option>
@@ -138,11 +151,39 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="dosen_id">Kode team</label>
-                  <select id="dosen_id" name="dosen_id" class="form-control @error('dosen_id') is-invalid @enderror select2bs4">
-                      <option value="">-- Pilih Kode team --</option>
-                      @foreach ($dosen as $data)
-                          <option value="{{ $data->id }}">{{ $data->kode }}</option>
+                  <label for="promotor">Promotor</label>
+                  <select id="promotor" name="promotor" class="form-control @error('promotor') is-invalid @enderror select2bs4">
+                      <option value="">-- Pilih Promotor --</option>
+                      @foreach ($promotor as $data)
+                          <option value="{{ $data->id_card }}">{{ $data->nama_dosen }}</option>
+                      @endforeach
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label for="kopromotor2">Ko Promotor 2</label>
+                  <select id="kopromotor2" name="kopromotor2" class="form-control @error('kopromotor2') is-invalid @enderror select2bs4">
+                      <option value="">-- Pilih Ko Promotor 2 --</option>
+                      @foreach ($koprom2 as $data)
+                          <option value="{{ $data->id_card }}">{{ $data->nama_dosen }}</option>
+                      @endforeach
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="penguji2">Penguji 2</label>
+                  <select id="penguji2" name="penguji2" class="form-control @error('penguji2') is-invalid @enderror select2bs4">
+                      <option value="">-- Pilih Penguji 2 --</option>
+                      @foreach ($penguji2 as $data)
+                          <option value="{{ $data->id_card }}">{{ $data->nama_dosen }}</option>
+                      @endforeach
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="penguji4">Penguji 4</label>
+                  <select id="penguji4" name="penguji4" class="form-control @error('penguji4') is-invalid @enderror select2bs4">
+                      <option value="">-- Pilih Penguji 4 --</option>
+                      @foreach ($penguji4 as $data)
+                          <option value="{{ $data->id_card }}">{{ $data->nama_dosen }}</option>
                       @endforeach
                   </select>
                 </div>
@@ -165,6 +206,46 @@
                       @endforeach
                   </select>
                 </div>
+                <div class="form-group">
+                  <label for="tanggal">Tanggal</label>
+                  <input type="date" class="form-control" name="tanggal">
+                </div>
+                <div class="form-group">
+                  <label for="kopromotor1">Ko Promotor 1</label>
+                  <select id="kopromotor1" name="kopromotor1" class="form-control @error('kopromotor1') is-invalid @enderror select2bs4">
+                      <option value="">-- Pilih Ko Promotor 1 --</option>
+                      @foreach ($koprom1 as $data)
+                          <option value="{{ $data->id_card }}">{{ $data->nama_penguji }}</option>
+                      @endforeach
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="penguji1">Penguji 1</label>
+                  <select id="penguji1" name="penguji1" class="form-control @error('penguji1') is-invalid @enderror select2bs4">
+                      <option value="">-- Pilih Penguji 1 --</option>
+                      @foreach ($penguji1 as $data)
+                          <option value="{{ $data->id_card }}">{{ $data->nama_dosen }}</option>
+                      @endforeach
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="penguji3">Penguji 3</label>
+                  <select id="penguji3" name="penguji3" class="form-control @error('penguji2') is-invalid @enderror select2bs4">
+                      <option value="">-- Pilih Penguji 3 --</option>
+                      @foreach ($penguji3 as $data)
+                          <option value="{{ $data->id_card }}">{{ $data->nama_dosen }}</option>
+                      @endforeach
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="penguji5">Penguji 5</label>
+                  <select id="penguji5" name="penguji5" class="form-control @error('penguji2') is-invalid @enderror select2bs4">
+                      <option value="">-- Pilih Penguji 5 --</option>
+                      @foreach ($penguji5 as $data)
+                          <option value="{{ $data->id_card }}">{{ $data->nama_dosen }}</option>
+                      @endforeach
+                  </select>
+                </div>
               </div>
             </div>
           </div>
@@ -179,6 +260,7 @@
 @endsection
 @section('script')
     <script>
+        $('#penguji2').select2();
         $("#MasterData").addClass("active");
         $("#liMasterData").addClass("menu-open");
         $("#DataJadwal").addClass("active");
