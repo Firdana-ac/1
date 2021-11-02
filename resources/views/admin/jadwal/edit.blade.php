@@ -115,7 +115,7 @@
                   <select id="penguji1" name="penguji1" class="form-control @error('penguji1') is-invalid @enderror select2bs4">
                       <option value="">-- Pilih Penguji 1 --</option>
                       @foreach ($dosen as $data)
-                          <option @if($data->id_card == $jadwal->penguji_1) selected @endif value="{{ $data->id_card }}">{{ $data->nama_penguji }}</option>
+                          <option @if($data->id_card == $jadwal->penguji_1) selected @endif value="{{ $data->id_card }}">{{ $data->nama_dosen }}</option>
                       @endforeach
                   </select>
                 </div>
@@ -124,7 +124,7 @@
                   <select id="penguji3" name="penguji3" class="form-control @error('penguji2') is-invalid @enderror select2bs4">
                       <option value="">-- Pilih Penguji 3 --</option>
                       @foreach ($dosen as $data)
-                          <option @if($data->id_card == $jadwal->penguji_3) selected @endif value="{{ $data->id_card }}">{{ $data->nama_penguji }}</option>
+                          <option @if($data->id_card == $jadwal->penguji_3) selected @endif value="{{ $data->id_card }}">{{ $data->nama_dosen }}</option>
                       @endforeach
                   </select>
                 </div>
@@ -145,7 +145,7 @@
         </form>
       </div>
       <!-- form start -->
-      <!--<form action="{{ route('jadwal.store') }}" method="post">
+      {{-- <form action="{{ route('jadwal.store') }}" method="post">
         @csrf
         <div class="card-body">
           <div class="row">
@@ -178,14 +178,14 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="dosen_id">Kode team</label>
-                <select id="dosen_id" name="dosen_id" class="form-control @error('dosen_id') is-invalid @enderror select2bs4">
-                  <option value="" @if ($jadwal->dosen_id)
+                <label for="penguji_id">Kode Mapel</label>
+                <select id="penguji_id" name="penguji_id" class="form-control @error('penguji_id') is-invalid @enderror select2bs4">
+                  <option value="" @if ($jadwal->penguji_id)
                     selected
-                  @endif>-- Pilih Kode team --</option>
-                  @foreach ($dosen as $data)
+                  @endif>-- Pilih Kode Mapel --</option>
+                  @foreach ($penguji as $data)
                     <option value="{{ $data->id }}"
-                      @if ($jadwal->dosen_id == $data->id)
+                      @if ($jadwal->penguji_id == $data->id)
                         selected
                       @endif
                     >{{ $data->kode }}</option>
@@ -217,14 +217,14 @@
               </div>
             </div>
           </div>
-        </div> -->
+        </div>
         <!-- /.card-body -->
 
         <div class="card-footer">
-          <a href="#" name="kembali" class="btn btn-default" id="back"><i class='nav-icon fas fa-arrow-left'></i> &nbsp; Kembali</a> &nbsp;
+          <a href="{{ route('jadwal.show', Crypt::encrypt($jadwal->id)) }}" name="kembali" class="btn btn-default" id="back"><i class='nav-icon fas fa-arrow-left'></i> &nbsp; Kembali</a> &nbsp;
           <button name="submit" class="btn btn-primary"><i class="nav-icon fas fa-save"></i> &nbsp; Update</button>
         </div>
-      </form>
+      </form> --}}
     </div>
     <!-- /.card -->
 </div>

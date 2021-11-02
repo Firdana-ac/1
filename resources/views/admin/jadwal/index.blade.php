@@ -37,8 +37,8 @@
                           <ul>
                               <li>rows 1 = nama hari</li>
                               <li>rows 2 = nama kelas</li>
-                              <li>rows 3 = nama team</li>
-                              <li>rows 4 = nama dosen</li>
+                              <li>rows 3 = nama mapel</li>
+                              <li>rows 4 = nama penguji</li>
                               <li>rows 5 = jam mulai</li>
                               <li>rows 6 = jam selesai</li>
                               <li>rows 7 = nama ruang</li>
@@ -81,7 +81,7 @@
             <thead>
                 <tr>
                     <th>No.</th>
-                    <th>Nama Mahasiswa</th>
+                    <th>Nama Mahasisa</th>
                     <th>Lihat Jadwal</th>
                 </tr>
             </thead>
@@ -89,9 +89,13 @@
                 @foreach ($jadwal as $data)
                   <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $data->mhs->nama_kelas }}</td>
+                  
+                      <td>{{ $data->mhs->nama_mhs }}</td>
+                 
+                   
                     <td>
                       <a href="{{ route('jadwal.show', Crypt::encrypt($data->id)) }}" class="btn btn-info btn-sm"><i class="nav-icon fas fa-search-plus"></i> &nbsp; Details</a>
+
                     </td>
                   </tr>
                 @endforeach
@@ -119,7 +123,8 @@
             @csrf
             <div class="row">
               <div class="col-md-6">
-                <div class="form-group">
+
+              <div class="form-group">
                   <label for="jam_mulai">Judul</label>
                   <input type='text' id="judul" name='judul' class="form-control @error('judul') is-invalid @enderror judul" placeholder="judul">
                 </div>
@@ -215,7 +220,7 @@
                   <select id="kopromotor1" name="kopromotor1" class="form-control @error('kopromotor1') is-invalid @enderror select2bs4">
                       <option value="">-- Pilih Ko Promotor 1 --</option>
                       @foreach ($koprom1 as $data)
-                          <option value="{{ $data->id_card }}">{{ $data->nama_penguji }}</option>
+                          <option value="{{ $data->id_card }}">{{ $data->nama_dosen }}</option>
                       @endforeach
                   </select>
                 </div>

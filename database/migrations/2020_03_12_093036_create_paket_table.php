@@ -15,7 +15,7 @@ class CreatePaketTable extends Migration
     {
         Schema::create('paket', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('ket', 50);
+            $table->string('ket', 50);
             $table->timestamps();
         });
     }

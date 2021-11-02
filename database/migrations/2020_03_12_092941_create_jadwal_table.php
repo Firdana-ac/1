@@ -17,11 +17,20 @@ class CreateJadwalTable extends Migration
             $table->bigIncrements('id');
             $table->integer('hari_id');
             $table->integer('kelas_id');
-            $table->integer('team_id');
-            $table->integer('dosen_id');
+            $table->integer('mhs_id');
             $table->time('jam_mulai');
             $table->time('jam_selesai');
-            $table->integer('ruang_id');
+            $table->string('judul');
+            $table->string('tanggal');
+            $table->string('promotor');
+            $table->string('kopromotor_1');
+            $table->string('kopromotro_2');
+            $table->string('penguji_1');
+            $table->string('penguji_2');
+            $table->string('penguji_3');
+            $table->string('penguji_4');
+            $table->string('penguji_5');
+
             $table->timestamps();
             $table->softDeletes();
         });
