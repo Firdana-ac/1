@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-11-23T12:19:37.615Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36" etag="b9MF0KyKaAP8gKDDIwXt" version="15.5.9" type="github" pages="5">
+<mxfile host="app.diagrams.net" modified="2021-11-23T12:20:47.555Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36" etag="l_9p6kffbr5LNyqjgQVR" version="15.5.9" type="github" pages="5">
   <diagram id="YRi623nnZ2iDuxrx0SJZ" name="Page-1">
     <mxGraphModel dx="1209" dy="626" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -2303,7 +2303,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="HP9hILGHeAu3N8StLKwf" name="Page-5">
-    <mxGraphModel dx="1727" dy="894" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4681" pageHeight="3300" math="0" shadow="0">
+    <mxGraphModel dx="1422" dy="736" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4681" pageHeight="3300" math="0" shadow="0">
       <root>
         <mxCell id="UpNNVRQ2WLDUb8Qb3aCR-0" />
         <mxCell id="UpNNVRQ2WLDUb8Qb3aCR-1" parent="UpNNVRQ2WLDUb8Qb3aCR-0" />
@@ -2387,6 +2387,15 @@
               <mxPoint x="790" y="240" />
             </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="UpNNVRQ2WLDUb8Qb3aCR-15" value="Analisa Kebutuhan" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="UpNNVRQ2WLDUb8Qb3aCR-1">
+          <mxGeometry x="250" y="350" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="UpNNVRQ2WLDUb8Qb3aCR-16" value="Perencanaan" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="UpNNVRQ2WLDUb8Qb3aCR-1">
+          <mxGeometry x="250" y="450" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="UpNNVRQ2WLDUb8Qb3aCR-17" value="Statement of Work" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="UpNNVRQ2WLDUb8Qb3aCR-1">
+          <mxGeometry x="250" y="550" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
